@@ -15,6 +15,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
+    //this adds a task
     public Task addTask(Task task) {
         if (task.getTitle() == null || task.getTitle().isEmpty()) {
             System.out.println("Task cannot be empty");
@@ -27,7 +28,8 @@ public class TaskService {
         return taskRepository.save(task);
 
     }
-
+//when you want to get a single task, we get it
+//by its ID so this gets a single task by its id.
     public Task getTaskById(Long id) {
         Optional<Task> task = taskRepository.findById(id);
         if (task.isPresent()) {
@@ -37,10 +39,21 @@ public class TaskService {
         }
         return null;
     }
-
+//gets all tasks.
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    public void deleteTaskById(Long id){
+        if (TaskRepository.existsById(id)) {
+            task.repository.deleteById(id);
+
+        }
+        }
 
     }
+
+
+
 
 }

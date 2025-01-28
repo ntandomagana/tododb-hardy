@@ -5,6 +5,8 @@ import com.todoapp.todo_hardy.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -15,14 +17,21 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @GetMapping("/")
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
+    }
+
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Task createTask(@RequestBody Task task) {
         return taskService.addTask(task);  // Calls service to add the task
     }
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Long id){
         return taskService.getTaskById(id);
     }
+
+
 
 }

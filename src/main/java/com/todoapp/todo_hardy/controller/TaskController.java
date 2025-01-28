@@ -20,4 +20,9 @@ public class TaskController {
     public Task createTask(@RequestBody Task task) {
         return taskService.addTask(task);  // Calls service to add the task
     }
+    @GetMapping("/tasks/{id}")
+    public Task getTaskById(@PathVariable Long id){
+        return taskService.getTaskById(id);
+    }
+
 }
